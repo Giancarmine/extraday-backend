@@ -2,10 +2,10 @@ package com.giancar.extraday_backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.giancar.controllers"})
+@EnableMongoRepositories
 public class ExtradayBackendApplication {
 
 	public static void main(String[] args) {
