@@ -14,7 +14,7 @@ Spring Boot REST API backend with MongoDB database.
 
 ## Prerequisites
 
-- Java 21
+- Java 17
 - Gradle
 - Docker
 - Docker Compose
@@ -70,14 +70,76 @@ To connect to MongoDB using a client:
 
 ## API Endpoints
 
-### GET /
+The API provides the following endpoints for user management:
 
-Returns a simple JSON response with status 201 Created.
+### User Endpoints
 
-Sample response:
+Base path: `/api/user`
 
+#### Create User
+- **POST** `/api/user`
+- Creates a new user
+- Request body:
 ```json
 {
-  "message": "Your first return value"
+    "name": "string",
+    "password": "string"
 }
 ```
+- Responses:
+  - `201 Created`: User created successfully
+  - `400 Bad Request`: Invalid user data
+  - `500 Internal Server Error`: Server error
+
+#### Get All Users
+- **GET** `/api/user`
+- Returns all registered users
+- Response: Array of user objects
+- Status codes:
+  - `200 OK`: Success
+  - `500 Internal Server Error`: Server error
+
+#### Get User by ID
+- **GET** `/api/user/{id}`
+- Returns a specific user by ID
+- Parameters:
+  - `id`: User ID (path parameter)
+- Responses:
+  - `200 OK`: Success
+  - `404 Not Found`: User not found
+  - `500 Internal Server Error`: Server error
+
+#### Update User
+- **PUT** `/api/user/{id}`
+- Updates an existing user
+- Parameters:
+  - `id`: User ID (path parameter)
+- Request body:
+```json
+{
+    "name": "string",
+    "password": "string"
+}
+```
+- Responses:
+  - `200 OK`: User updated successfully
+  - `400 Bad Request`: Invalid user data
+  - `404 Not Found`: User not found
+  - `500 Internal Server Error`: Server error
+
+#### Delete User
+- **DELETE** `/api/user/{id}`
+- Deletes a specific user
+- Parameters:
+  - `id`: User ID (path parameter)
+- Responses:
+  - `204 No Content`: User deleted successfully
+  - `404 Not Found`: User not found
+  - `500 Internal Server Error`: Server error
+
+#### Delete All Users
+- **DELETE** `/api/user`
+- Deletes all users
+- Responses:
+  - `204 No Content`: All users deleted successfully
+  - `500 Internal Server Error`: Server error
